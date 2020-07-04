@@ -1,14 +1,14 @@
 const express = require('express');
-const bootcamps = require('./routes/bootcamps');
 const morgan = require('morgan');
 const colors = require('colors');
 const connectDB = require('./config/db');
 
-const errorHandler = require('./middleware/error');
-
 require('dotenv').config({
   path: './config/config.env',
 });
+
+const bootcamps = require('./routes/bootcamps');
+const errorHandler = require('./middleware/error');
 
 // Connect MongoDB
 connectDB();
