@@ -8,6 +8,7 @@ require('dotenv').config({
 });
 
 const bootcamps = require('./routes/bootcamps');
+const courses = require('./routes/courses');
 const errorHandler = require('./middleware/error');
 
 // Connect MongoDB
@@ -25,6 +26,7 @@ if (process.env.NODE_ENV === 'development') {
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
+app.use('/api/v1/courses', courses);
 app.use(errorHandler);
 
 const server = app.listen(PORT, () => {
