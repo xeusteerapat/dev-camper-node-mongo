@@ -2,6 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const colors = require('colors');
 const fileUpload = require('express-fileupload');
+const cookieParser = require('cookie-parser');
 const path = require('path');
 const connectDB = require('./config/db');
 
@@ -19,6 +20,9 @@ connectDB();
 
 const app = express();
 app.use(express.json());
+
+// Cookie parser
+app.use(cookieParser());
 
 const PORT = process.env.PORT || 5000;
 
