@@ -5,6 +5,9 @@ const fileUpload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 const helmet = require('helmet');
 const xss = require('xss-clean');
+const rateLimit = require('express-rate-limit');
+const hpp = require('hpp');
+const cors = require('cors');
 const path = require('path');
 const connectDB = require('./config/db');
 const mongoSanitize = require('express-mongo-sanitize');
@@ -49,8 +52,22 @@ app.use(helmet());
 // Prevent xss cros site scripting
 app.use(xss());
 
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 10 * 60 * 1000, // 10 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+});
+
+app.use(limiter);
+
+// Prevent http params polution
+app.use(hpp());
+
 // Set static folder
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Enable cross site origin
+app.use(cors());
 
 // Mount routers
 app.use('/api/v1/bootcamps', bootcamps);
