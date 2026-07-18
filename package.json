@@ -17,7 +17,7 @@
     "hpp": "^0.2.3",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^8.22.1",
-    "morgan": "^1.10.1",
+    "morgan": "^1.11.0",
     "node-geocoder": "^4.2.0",
     "nodemailer": "^9.0.1",
     "slugify": "^1.4.4",
